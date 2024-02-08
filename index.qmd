@@ -10,9 +10,6 @@ about:
     - icon: linkedin
       text: LinkedIn
       href: www.linkedin.com/in/laya-davis
-    - icon: github
-      text: GitHub
-      href: https://github.com/layadavis/layadavis.github.io
     - icon: file-earmark-pdf
       text: Resumé
       href: Laya_Davis_Resume.pdf
