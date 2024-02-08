@@ -1,5 +1,5 @@
 ---
-title: "YOUR NAME" 
+title: "Laya Davis" 
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
   image: img/profile.png
@@ -9,33 +9,31 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
-    - icon: instagram
-      text: Instagram
-      href: https://instagram.com
+      href: www.linkedin.com/in/laya-davis
     - icon: github
       text: GitHub
-      href: https://github.com
+      href: https://layadavis.github.io
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://GITHUB_USERNAME.github.io/resume-example.pdf
+      href: Laya_Davis_Resume.pdf
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:lad9@geneseo.edu
 
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Laya Davis is an Applied Mathematics Major at SUNY Geneseo. When not study for actuary exams, Laya acts as the president of Geneseo's Actuary Club and their Chapter of the Association for Women in Mathematics. 
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-B.S. in Data Analytics | Aug 2022 - May 2026 <br>
-Minor in Business Administration 
+B.S. in Applied Mathematics | Aug 2021 - May 2025 <br>
 
 ## Experience
 
-Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
+Excellus BCBS | Actuary Intern | June 2023 - Aug 2023
+
+Math Learning Center | Tutor | January 2022 - Present
 
 
