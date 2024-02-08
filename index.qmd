@@ -12,7 +12,7 @@ about:
       href: www.linkedin.com/in/laya-davis
     - icon: github
       text: GitHub
-      href: https://layadavis.github.io
+      href: https://github.com/layadavis/layadavis.github.io
     - icon: file-earmark-pdf
       text: Resumé
       href: Laya_Davis_Resume.pdf
@@ -23,7 +23,7 @@ about:
 ---
 
 
-Laya Davis is an Applied Mathematics Major at SUNY Geneseo. When not study for actuary exams, Laya acts as the president of Geneseo's Actuary Club and their Chapter of the Association for Women in Mathematics. 
+Laya Davis is an Applied Mathematics Major at SUNY Geneseo. When not studying for actuary exams, Laya acts as the president of Geneseo's Actuary Club and their Chapter of the Association for Women in Mathematics. 
 
 ## Education
 
