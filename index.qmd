@@ -2,7 +2,7 @@
 title: "Laya Davis" 
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/profile.png
+  image: img/Self Photo.png
   image-width: 16em
   image-shape: round # rectangle  round  rounded
   
