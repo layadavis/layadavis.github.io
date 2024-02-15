@@ -32,7 +32,7 @@
     "href": "index.html#education",
     "title": "Laya Davis",
     "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Applied Mathematics | Aug 2021 - May 2025"
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Applied Mathematics | Aug 2021 - May 2025 \nSOA Exam FM Passed ## Experience\nExcellus BCBS | Actuary Intern | June 2023 - Aug 2023\nMath Learning Center | Tutor | January 2022 - Present"
   },
   {
     "objectID": "index.html#experience",
@@ -123,7 +123,7 @@
     "href": "blog-listing.html",
     "title": "Insightful Analytics",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nByeong-Hak Choe\n\n\n9 min\n\n\n\n\n\n\n  \n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPython Basics\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nLaya Davis\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nBeer Markets\n\n\n\n\n\n\n\n\nNov 2, 2023\n\n\nByeong-Hak Choe\n\n\n9 min\n\n\n\n\n\n\n\n\n\n\n\n\nStarwars\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYour Name\n\n\n3 min\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\nOct 30, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\nOct 27, 2023\n\n\nYOUR NAME\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "danl-210-quarto-reticulate.html",
@@ -257,5 +257,12 @@
     "title": "Introduction to Python",
     "section": "Lists and Dictionaries",
     "text": "Lists and Dictionaries\nA list is a collection which is ordered and changeable.\nA dictionary is a collection which is unordered, changeable and indexed.\n\n# List example:\nmy_list = ['apple', 'banana', 'cherry']\n\n# Dictionary example:\nmy_dict = {'name': 'John', 'age': 36}"
+  },
+  {
+    "objectID": "posts/python basics/python basics.html",
+    "href": "posts/python basics/python basics.html",
+    "title": "Python Basics",
+    "section": "",
+    "text": "This posts describes the basics of Python reviewed at the beginning of our DANL 300 class.\nAn important aspect of the Python language is variables. These are used to store values such as strings, integers, lists, etc. An example of using this variables is:\n\nint_var = 10\nstr_var = \"Hi!\"\nlist_var = [1,2,3]\n\nIt is often helpful to use logical conditions when coding in Python. These operators work with the same logic as they would in a math class, but can be applied on non numerical values such as strings and lists as well.\n\n# These are not equal\n\"10\" != 10\n\n# These are equal \n\"h\" == \"h\"\n2 == 2\n\n# These are true inequalities\n10 &gt; 5\n6 &lt; 12\n8 &lt;= 13\n\n# These are all false \n\"10\" != 10\n\"h\" != \"h\"\n2 != 2\n10 &lt; 5\n\nFalse\n\n\nFunctions are another important part of coding in Python and can often be used to reduce repetition and allow for user interaction.\nBelow is an example of a function that computes the following polynomial: f(x) = x + 5\n\n# To define a function\ndef f(x):\n  return x + 5\n\n# To call the function\nf(2)\n\n7"
   }
 ]

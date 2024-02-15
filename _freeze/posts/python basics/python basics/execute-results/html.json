@@ -1,0 +1,12 @@
+{
+  "hash": "0c97c176832787886dff80e0ed4d50c7",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Python Basics\"\nauthor: \"Laya Davis\"\ndate: \"2024-2-15\"\ncategories: [news, code, analysis]\nimage: \"python basics image.avif\"\n---\n\nThis posts describes the basics of Python reviewed at the beginning of our DANL 300 class.\n\nAn important aspect of the Python language is variables. These are used to store values such as strings, integers, lists, etc. An example of using this variables is:\n\n::: {#04ba71db .cell execution_count=1}\n``` {.python .cell-code}\nint_var = 10\nstr_var = \"Hi!\"\nlist_var = [1,2,3]\n```\n:::\n\n\nIt is often helpful to use logical conditions when coding in Python. These operators work with the same logic as they would in a math class, but can be applied on non numerical values such as strings and lists as well.\n\n::: {#974cfb92 .cell execution_count=2}\n``` {.python .cell-code}\n# These are not equal\n\"10\" != 10\n\n# These are equal \n\"h\" == \"h\"\n2 == 2\n\n# These are true inequalities\n10 > 5\n6 < 12\n8 <= 13\n\n# These are all false \n\"10\" != 10\n\"h\" != \"h\"\n2 != 2\n10 < 5\n```\n\n::: {.cell-output .cell-output-display execution_count=2}\n```\nFalse\n```\n:::\n:::\n\n\nFunctions are another important part of coding in Python and can often be used to reduce repetition and allow for user interaction.\n\nBelow is an example of a function that computes the following polynomial: f(x) = x + 5\n\n::: {#96b5f335 .cell execution_count=3}\n``` {.python .cell-code}\n# To define a function\ndef f(x):\n  return x + 5\n\n# To call the function\nf(2)\n```\n\n::: {.cell-output .cell-output-display execution_count=3}\n```\n7\n```\n:::\n:::\n\n\n![](image.jpg)\n\n",
+    "supporting": [
+      "python basics_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

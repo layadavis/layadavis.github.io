@@ -1,0 +1,59 @@
+---
+title: "Python Basics"
+author: "Laya Davis"
+date: "2024-2-15"
+categories: [news, code, analysis]
+image: "python basics image.avif"
+---
+
+This posts describes the basics of Python reviewed at the beginning of our DANL 210 class.
+
+An important aspect of the Python language is variables. These are used to store values such as strings, integers, lists, etc. An example of using this variables is:
+
+```{python}
+int_var = 10
+str_var = "Hi!"
+list_var = [1,2,3]
+```
+
+
+
+It is often helpful to use logical conditions when coding in Python. These operators work with the same logic as they would in a math class, but can be applied on non numerical values such as strings and lists as well.
+
+```{python}
+# These are not equal
+10 != "10"
+
+# These are equal 
+"h" == "h"
+2 == 2
+
+# These are true inequalities
+10 > 5
+6 < 12
+8 <= 13
+
+# These are all false 
+"10" == 10
+"h" != "h"
+2 != 2
+10 < 5
+```
+
+
+
+Functions are another important part of coding in Python and can often be used to reduce repetition and allow for user interaction.
+
+Below is an example of a function that computes the following polynomial: f(x) = x + 5
+
+```{python}
+# To define a function
+def f(x):
+  return x + 5
+
+# To call the function
+f(2)
+```
+
+
+![](image.jpg)
