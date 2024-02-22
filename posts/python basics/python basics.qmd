@@ -55,5 +55,3 @@ def f(x):
 f(2)
 ```
 
-
-![](image.jpg)
