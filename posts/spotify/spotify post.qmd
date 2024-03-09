@@ -1,0 +1,66 @@
+---
+title: "Spotify"
+author: "Laya Davis"
+date: "2024-3-07"
+categories: [news, code, analysis]
+image: "spotify.png"
+---
+
+This posts describes the basics of using counting, sorting, indexing, and filtering methods on DataFrames in Python using Pandas. This will be done by using a Spotify DataFrame:
+
+```{python}
+import pandas as pd
+
+spotify = pd.read_csv('https://bcdanl.github.io/data/spotify_all.csv')
+```
+
+
+
+An good first step when evaluating or manipulating DataFrames is to use the .info() function to learn about its columns and their data types:
+
+```{python}
+spotify.info()
+```
+
+
+
+DataFrames are by default, given integer indexing which means each row of observations are assigned an integer beginning with 0. It can be heelpful to replace this integer indexing with information within the DataFrame instead. For example the code below converts the index to the information in the 'artist name' column. The inplace = True is used to alter the original DataFrame directly rather than Python making a copy to alter.
+
+```{python}
+spotify.set_index('artist_name', inplace = True)
+```
+
+
+
+We can then use this new index to filter the DataFrame for select artists using the .loc() function. In this case we are filtering for Taylor Swift and Beyoncé.
+
+```{python}
+spotify.loc[['Taylor Swift', 'Beyoncé']]
+```
+
+
+
+Suppose you wanted to count the number of observations that were in this DataFrame of only Taylor Swift and Beyoncé. You could use the .count() function with the previous line of code. This will give you the number of non-missing values for each column.
+
+```{python}
+spotify.loc[['Taylor Swift', 'Beyoncé']].count()
+```
+
+
+
+Perhaphs instead of knowing the number of observations you instead wanted to sort this DataFrame by the 'track_name' variable. You could use the .sort_values() function. 
+
+```{python}
+spotify.loc[['Taylor Swift', 'Beyoncé']].sort_values('track_name')
+```
+
+
+
+Since we altered the original DataFrame indexing, it may be helpful to revert back to the default integer indexing using the .reset_index() function. Once again the inplace = True parameter is used to alter the DataFrame itself rather than a copy.
+
+```{python}
+spotify.reset_index(inplace = True)
+```
+
+
+
