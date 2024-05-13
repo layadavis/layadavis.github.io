@@ -1,0 +1,3169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Laya Davis">
+<meta name="dcterms.date" content="2024-05-13">
+
+<title>Laya Davis - Analysis the Relationship between ESG and Financial Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Laya Davis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./danl-210-Final-Project.html" aria-current="page"> 
+<span class="menu-text">Final Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./blog-listing.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./basic-python-intro.html"> 
+<span class="menu-text">Python Basics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./danl-210-quarto-reticulate.html"> 
+<span class="menu-text">Using Python and R together!</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Analysis the Relationship between ESG and Financial Data</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Laya Davis </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 13, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Introduction: Although Financial Data has been reported by major companies for quiet some time, there has been a much shorter period in which major companies have been responsible for reporting on their impacts to the environment and the communities around them. The ESG Risk Scores as well as the Controversy Levels help the public assess companies as a whole, with all of the costs and benefits. Although these numbers might not be based in financials, basic economics tells us that we must access economic activity by both its internal and external costs. The ESG data and rankings help us begin to do just that. In this post I will provide some data analysis on both the financial and ESG data of 635 companies to analysis the true value of these companies.</p>
+<p>Questions I wish to answer:</p>
+<ol type="1">
+<li><p>What companies have the highest and lowest average stock price?</p></li>
+<li><p>What sectors have highest and lowest average stock price?</p></li>
+<li><p>What industries have highest and lowest average stock price?</p></li>
+<li><p>For the highest average stock value companies, what is the overall financial health of the company?</p></li>
+<li><p>How do the successful companies compare in terms of ESG Risk Score and Controversy Level?</p></li>
+</ol>
+<div id="167e54e7" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>esg_df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/esg_data.csv'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>stock_data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/Stock_data.csv'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>esg_stock_df <span class="op">=</span> pd.merge(esg_df, stock_data, on <span class="op">=</span> <span class="st">'Symbol'</span>, how <span class="op">=</span> <span class="st">"right"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>esg_stock_df.drop([<span class="st">'Unnamed: 0_x'</span>, <span class="st">'Unnamed: 0_y'</span>], axis <span class="op">=</span><span class="dv">1</span>, inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To learn more about the DataFrame before we begin our analysis, the .info() function can help learn about its columns and their data types:</p>
+<div id="713a7767" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>esg_stock_df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 197796 entries, 0 to 197795
+Data columns (total 16 columns):
+ #   Column             Non-Null Count   Dtype  
+---  ------             --------------   -----  
+ 0   Symbol             197796 non-null  object 
+ 1   Company Name       197796 non-null  object 
+ 2   Sector             197796 non-null  object 
+ 3   Industry           197796 non-null  object 
+ 4   Country            197174 non-null  object 
+ 5   Market Cap         197796 non-null  float64
+ 6   ESG Risk Score     189399 non-null  float64
+ 7   Controversy Level  175093 non-null  float64
+ 8   Date               197796 non-null  object 
+ 9   Open               197796 non-null  float64
+ 10  High               197796 non-null  float64
+ 11  Low                197796 non-null  float64
+ 12  Close              197796 non-null  float64
+ 13  Volume             197796 non-null  int64  
+ 14  Dividends          197796 non-null  float64
+ 15  Stock Splits       197796 non-null  float64
+dtypes: float64(9), int64(1), object(6)
+memory usage: 24.1+ MB</code></pre>
+</div>
+</div>
+<p>To obtain some basic descriptive statistics on the data in the DataFrame, we can use .describe():</p>
+<div id="41f74b96" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>esg_stock_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Market Cap</th>
+<th data-quarto-table-cell-role="th">ESG Risk Score</th>
+<th data-quarto-table-cell-role="th">Controversy Level</th>
+<th data-quarto-table-cell-role="th">Open</th>
+<th data-quarto-table-cell-role="th">High</th>
+<th data-quarto-table-cell-role="th">Low</th>
+<th data-quarto-table-cell-role="th">Close</th>
+<th data-quarto-table-cell-role="th">Volume</th>
+<th data-quarto-table-cell-role="th">Dividends</th>
+<th data-quarto-table-cell-role="th">Stock Splits</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>1.977960e+05</td>
+<td>189399.000000</td>
+<td>175093.000000</td>
+<td>197796.000000</td>
+<td>197796.000000</td>
+<td>197796.000000</td>
+<td>197796.000000</td>
+<td>1.977960e+05</td>
+<td>197796.000000</td>
+<td>197796.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>7.161278e+10</td>
+<td>21.617077</td>
+<td>1.976909</td>
+<td>149.346905</td>
+<td>150.930046</td>
+<td>147.861750</td>
+<td>149.453153</td>
+<td>4.134482e+06</td>
+<td>0.008567</td>
+<td>0.000139</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>2.266365e+11</td>
+<td>7.158493</td>
+<td>0.784736</td>
+<td>329.725612</td>
+<td>333.293063</td>
+<td>326.693324</td>
+<td>330.100237</td>
+<td>9.289442e+06</td>
+<td>0.132398</td>
+<td>0.016646</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>1.986640e+08</td>
+<td>6.400000</td>
+<td>1.000000</td>
+<td>1.030000</td>
+<td>1.060000</td>
+<td>0.780000</td>
+<td>0.980000</td>
+<td>0.000000e+00</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>1.099163e+10</td>
+<td>16.300000</td>
+<td>1.000000</td>
+<td>39.998215</td>
+<td>40.470001</td>
+<td>39.551458</td>
+<td>40.023048</td>
+<td>8.323000e+05</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>2.397381e+10</td>
+<td>21.100000</td>
+<td>2.000000</td>
+<td>82.133376</td>
+<td>83.036279</td>
+<td>81.245830</td>
+<td>82.176575</td>
+<td>1.707600e+06</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>5.889363e+10</td>
+<td>26.100000</td>
+<td>2.000000</td>
+<td>155.040262</td>
+<td>156.597651</td>
+<td>153.630964</td>
+<td>155.150021</td>
+<td>3.854425e+06</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>3.019135e+12</td>
+<td>52.000000</td>
+<td>5.000000</td>
+<td>8022.919922</td>
+<td>8158.990234</td>
+<td>8010.000000</td>
+<td>8099.959961</td>
+<td>3.160112e+08</td>
+<td>35.000000</td>
+<td>4.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>To answer question number 1 we can group the DataFrame by company, calculate the average value for each companies stock close, and sort the DataFrame by its average value for close. In the code below we use the head() and tail() attributes to obtain the companies with the largest average stock close value in df1a and the companies with the smallest average stock close value in df1b.</p>
+<div id="6a57543a" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>companies <span class="op">=</span> esg_stock_df.groupby(<span class="st">'Company Name'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> (esg_stock_df</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       .assign(Close_avg <span class="op">=</span> companies[<span class="st">'Close'</span>].transform(<span class="st">'mean'</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> [<span class="st">'Symbol'</span>])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'Close_avg'</span>], ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>df1a <span class="op">=</span> df1.head(<span class="dv">10</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>df1b <span class="op">=</span> df1.tail(<span class="dv">10</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>df1a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Symbol</th>
+<th data-quarto-table-cell-role="th">Company Name</th>
+<th data-quarto-table-cell-role="th">Sector</th>
+<th data-quarto-table-cell-role="th">Industry</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Market Cap</th>
+<th data-quarto-table-cell-role="th">ESG Risk Score</th>
+<th data-quarto-table-cell-role="th">Controversy Level</th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Open</th>
+<th data-quarto-table-cell-role="th">High</th>
+<th data-quarto-table-cell-role="th">Low</th>
+<th data-quarto-table-cell-role="th">Close</th>
+<th data-quarto-table-cell-role="th">Volume</th>
+<th data-quarto-table-cell-role="th">Dividends</th>
+<th data-quarto-table-cell-role="th">Stock Splits</th>
+<th data-quarto-table-cell-role="th">Close_avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">130620</td>
+<td>NVR</td>
+<td>NVR, Inc.</td>
+<td>Consumer Discretionary</td>
+<td>Residential Construction</td>
+<td>United States</td>
+<td>2.436459e+10</td>
+<td>20.3</td>
+<td>1.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>4647.439941</td>
+<td>4690.000000</td>
+<td>4519.049805</td>
+<td>4589.319824</td>
+<td>24900</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>6153.677023</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">26124</td>
+<td>BKNG</td>
+<td>Booking Holdings Inc.</td>
+<td>Consumer Discretionary</td>
+<td>Travel Services</td>
+<td>United States</td>
+<td>1.203189e+11</td>
+<td>19.2</td>
+<td>3.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>2033.625803</td>
+<td>2043.769887</td>
+<td>2000.450690</td>
+<td>2027.022705</td>
+<td>266900</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2948.585141</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">19593</td>
+<td>AZO</td>
+<td>AutoZone, Inc.</td>
+<td>Consumer Discretionary</td>
+<td>Specialty Retail</td>
+<td>United States</td>
+<td>5.097399e+10</td>
+<td>11.0</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>2441.510010</td>
+<td>2454.709961</td>
+<td>2420.320068</td>
+<td>2431.060059</td>
+<td>134500</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2589.000900</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">40741</td>
+<td>CMG</td>
+<td>Chipotle Mexican Grill, Inc.</td>
+<td>Consumer Discretionary</td>
+<td>Restaurants</td>
+<td>United States</td>
+<td>8.739044e+10</td>
+<td>20.7</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>1400.300049</td>
+<td>1403.410034</td>
+<td>1358.030029</td>
+<td>1371.130005</td>
+<td>321300</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2025.354601</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">118491</td>
+<td>MKL</td>
+<td>Markel Corporation</td>
+<td>Financial Services</td>
+<td>Insurance - Property &amp; Casualty</td>
+<td>United States</td>
+<td>1.883283e+10</td>
+<td>26.9</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>1317.000000</td>
+<td>1333.790039</td>
+<td>1306.280029</td>
+<td>1321.969971</td>
+<td>41100</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1403.696236</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">123778</td>
+<td>MTD</td>
+<td>Mettler-Toledo International Inc.</td>
+<td>Industrials</td>
+<td>Diagnostics &amp; Research</td>
+<td>Switzerland</td>
+<td>2.659257e+10</td>
+<td>13.1</td>
+<td>NaN</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>1455.189941</td>
+<td>1468.209961</td>
+<td>1430.359985</td>
+<td>1461.869995</td>
+<td>84400</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1288.818390</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">134974</td>
+<td>ORLY</td>
+<td>O'Reilly Automotive, Inc.</td>
+<td>Consumer Discretionary</td>
+<td>Specialty Retail</td>
+<td>United States</td>
+<td>6.163006e+10</td>
+<td>12.1</td>
+<td>1.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>842.429993</td>
+<td>843.880005</td>
+<td>833.510010</td>
+<td>840.719971</td>
+<td>455500</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>934.843987</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">169806</td>
+<td>TDG</td>
+<td>TransDigm Group Incorporated</td>
+<td>Industrials</td>
+<td>Aerospace &amp; Defense</td>
+<td>United States</td>
+<td>7.001662e+10</td>
+<td>38.7</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>610.590637</td>
+<td>611.449089</td>
+<td>601.466152</td>
+<td>603.578491</td>
+<td>216100</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>865.193037</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">17105</td>
+<td>AVGO</td>
+<td>Broadcom Inc.</td>
+<td>Technology</td>
+<td>Semiconductors</td>
+<td>United States</td>
+<td>6.228706e+11</td>
+<td>NaN</td>
+<td>3.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>550.084430</td>
+<td>552.586591</td>
+<td>536.249542</td>
+<td>538.868530</td>
+<td>2017300</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>862.022158</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">148658</td>
+<td>REGN</td>
+<td>Regeneron Pharmaceuticals, Inc.</td>
+<td>Health Care</td>
+<td>Biotechnology</td>
+<td>United States</td>
+<td>9.694171e+10</td>
+<td>18.0</td>
+<td>NaN</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>721.859985</td>
+<td>732.429993</td>
+<td>719.349976</td>
+<td>720.469971</td>
+<td>508500</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>816.592122</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="f2b9678e" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df1b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Symbol</th>
+<th data-quarto-table-cell-role="th">Company Name</th>
+<th data-quarto-table-cell-role="th">Sector</th>
+<th data-quarto-table-cell-role="th">Industry</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Market Cap</th>
+<th data-quarto-table-cell-role="th">ESG Risk Score</th>
+<th data-quarto-table-cell-role="th">Controversy Level</th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Open</th>
+<th data-quarto-table-cell-role="th">High</th>
+<th data-quarto-table-cell-role="th">Low</th>
+<th data-quarto-table-cell-role="th">Close</th>
+<th data-quarto-table-cell-role="th">Volume</th>
+<th data-quarto-table-cell-role="th">Dividends</th>
+<th data-quarto-table-cell-role="th">Stock Splits</th>
+<th data-quarto-table-cell-role="th">Close_avg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">46339</td>
+<td>CPG</td>
+<td>Veren Inc.</td>
+<td>Energy</td>
+<td>Oil &amp; Gas Exploration &amp; Production</td>
+<td>Canada</td>
+<td>5.622942e+09</td>
+<td>42.4</td>
+<td>NaN</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>6.598251</td>
+<td>6.617049</td>
+<td>6.090693</td>
+<td>6.137689</td>
+<td>7595800</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>7.017990</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">149902</td>
+<td>RIG</td>
+<td>Transocean Ltd.</td>
+<td>Energy</td>
+<td>Oil &amp; Gas Drilling</td>
+<td>Switzerland</td>
+<td>4.749011e+09</td>
+<td>25.5</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>4.500000</td>
+<td>4.620000</td>
+<td>4.250000</td>
+<td>4.320000</td>
+<td>17232100</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>6.593762</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">90812</td>
+<td>ICL</td>
+<td>ICL Group Ltd</td>
+<td>Industrials</td>
+<td>Agricultural Inputs</td>
+<td>Israel</td>
+<td>6.083937e+09</td>
+<td>30.5</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>6.951882</td>
+<td>6.979838</td>
+<td>6.728228</td>
+<td>6.784142</td>
+<td>1058800</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>5.694339</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">83659</td>
+<td>HBI</td>
+<td>Hanesbrands Inc.</td>
+<td>Consumer Discretionary</td>
+<td>Apparel Manufacturing</td>
+<td>United States</td>
+<td>1.572902e+09</td>
+<td>14.2</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>6.450000</td>
+<td>6.730000</td>
+<td>6.370000</td>
+<td>6.730000</td>
+<td>10866400</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>4.911222</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">157988</td>
+<td>SIRI</td>
+<td>Sirius XM Holdings Inc.</td>
+<td>Consumer Discretionary</td>
+<td>Entertainment</td>
+<td>United States</td>
+<td>1.160424e+10</td>
+<td>16.2</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>5.684031</td>
+<td>5.703497</td>
+<td>5.567236</td>
+<td>5.635366</td>
+<td>16513500</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>4.496870</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">154567</td>
+<td>SABR</td>
+<td>Sabre Corporation</td>
+<td>Technology</td>
+<td>Travel Services</td>
+<td>United States</td>
+<td>1.062546e+09</td>
+<td>22.7</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>6.350000</td>
+<td>6.460000</td>
+<td>6.080000</td>
+<td>6.160000</td>
+<td>3809900</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>4.220981</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">43851</td>
+<td>COMM</td>
+<td>CommScope Holding Company, Inc.</td>
+<td>Technology</td>
+<td>Communication Equipment</td>
+<td>United States</td>
+<td>1.986640e+08</td>
+<td>14.5</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>7.450000</td>
+<td>7.640000</td>
+<td>7.190000</td>
+<td>7.420000</td>
+<td>3458400</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>4.116318</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">170428</td>
+<td>TEF</td>
+<td>Telefónica, S.A.</td>
+<td>Communication Services</td>
+<td>Telecom Services</td>
+<td>Spain</td>
+<td>2.587706e+10</td>
+<td>17.4</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>3.348798</td>
+<td>3.367300</td>
+<td>3.330296</td>
+<td>3.358049</td>
+<td>1406600</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>3.903995</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">35143</td>
+<td>CERS</td>
+<td>Cerus Corporation</td>
+<td>Technology</td>
+<td>Medical Devices</td>
+<td>United States</td>
+<td>3.099935e+08</td>
+<td>22.2</td>
+<td>NaN</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>3.680000</td>
+<td>3.790000</td>
+<td>3.670000</td>
+<td>3.740000</td>
+<td>1082800</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2.228714</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">109783</td>
+<td>LUMN</td>
+<td>Lumen Technologies, Inc.</td>
+<td>Communication Services</td>
+<td>Telecom Services</td>
+<td>United States</td>
+<td>1.221805e+09</td>
+<td>26.1</td>
+<td>2.0</td>
+<td>2023-01-03 00:00:00-05:00</td>
+<td>5.300000</td>
+<td>5.410000</td>
+<td>5.220000</td>
+<td>5.370000</td>
+<td>15331300</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2.179807</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>To answer question 2 we have the following code to form a new DataFrame that is grouped by sector.</p>
+<div id="0bc52f8a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sectors <span class="op">=</span> esg_stock_df.groupby(<span class="st">'Sector'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> (esg_stock_df</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       .assign(Average_Stock_Close <span class="op">=</span> sectors[<span class="st">'Close'</span>].transform(<span class="st">'mean'</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>               Average_ESG_Score <span class="op">=</span> sectors[<span class="st">'ESG Risk Score'</span>].transform(<span class="st">'mean'</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Sector'</span>, <span class="st">'Average_Stock_Close'</span>, <span class="st">'Average_ESG_Score'</span>]]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> [<span class="st">'Sector'</span>])</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'Average_Stock_Close'</span>], ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>       .reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Sector</th>
+<th data-quarto-table-cell-role="th">Average_Stock_Close</th>
+<th data-quarto-table-cell-role="th">Average_ESG_Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Consumer Discretionary</td>
+<td>206.279119</td>
+<td>19.434028</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Industrials</td>
+<td>179.859107</td>
+<td>23.619149</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Health Care</td>
+<td>177.215485</td>
+<td>22.684615</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Technology</td>
+<td>169.162225</td>
+<td>18.041667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Financial Services</td>
+<td>117.246608</td>
+<td>21.787234</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Real Estate</td>
+<td>92.220643</td>
+<td>13.685000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Consumer Staples</td>
+<td>83.106279</td>
+<td>26.566667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Communication Services</td>
+<td>73.124122</td>
+<td>21.042857</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Energy</td>
+<td>67.970187</td>
+<td>33.189286</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>Utilities</td>
+<td>66.169397</td>
+<td>26.626829</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>Basic Materials</td>
+<td>54.703244</td>
+<td>21.287500</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>Miscellaneous</td>
+<td>38.141048</td>
+<td>28.300000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>We can then use a bar chart to see which sectors have the highest and lowest average stock value. In the below bar graph you can see that the sector with highest average stock value is Consumer Discretionary.</p>
+<div id="a2deaf9c" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data <span class="op">=</span> df2,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span><span class="st">'Sector'</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> <span class="st">'Average_Stock_Close'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation <span class="op">=</span> <span class="dv">80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>(array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11]),
+ [Text(0, 0, 'Consumer Discretionary'),
+  Text(1, 0, 'Industrials'),
+  Text(2, 0, 'Health Care'),
+  Text(3, 0, 'Technology'),
+  Text(4, 0, 'Financial Services'),
+  Text(5, 0, 'Real Estate'),
+  Text(6, 0, 'Consumer Staples'),
+  Text(7, 0, 'Communication Services'),
+  Text(8, 0, 'Energy'),
+  Text(9, 0, 'Utilities'),
+  Text(10, 0, 'Basic Materials'),
+  Text(11, 0, 'Miscellaneous')])</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="danl-210-Final-Project_files/figure-html/cell-8-output-2.png" width="742" height="582" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also see how these sectors compare in terms of the average ESG Risk Score for the companies in that sector. You can see in the bar graph below that the sector Consumer Discretionary has a relatively average value for their average ESG Risk score.</p>
+<div id="e5a0c205" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data <span class="op">=</span> df2,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span><span class="st">'Sector'</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> <span class="st">'Average_ESG_Score'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation <span class="op">=</span> <span class="dv">80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>(array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11]),
+ [Text(0, 0, 'Consumer Discretionary'),
+  Text(1, 0, 'Industrials'),
+  Text(2, 0, 'Health Care'),
+  Text(3, 0, 'Technology'),
+  Text(4, 0, 'Financial Services'),
+  Text(5, 0, 'Real Estate'),
+  Text(6, 0, 'Consumer Staples'),
+  Text(7, 0, 'Communication Services'),
+  Text(8, 0, 'Energy'),
+  Text(9, 0, 'Utilities'),
+  Text(10, 0, 'Basic Materials'),
+  Text(11, 0, 'Miscellaneous')])</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="danl-210-Final-Project_files/figure-html/cell-9-output-2.png" width="733" height="582" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To answer question 3 we can form a new DataFrame that is grouped by industries.</p>
+<div id="1c11b0f3" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>industries <span class="op">=</span> esg_stock_df.groupby(<span class="st">'Industry'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> (esg_stock_df</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       .assign(Average_Stock_Close <span class="op">=</span> industries[<span class="st">'Close'</span>].transform(<span class="st">'mean'</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>               Average_ESG_Score <span class="op">=</span> industries[<span class="st">'ESG Risk Score'</span>].transform(<span class="st">'mean'</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Industry'</span>, <span class="st">'Average_Stock_Close'</span>, <span class="st">'Average_ESG_Score'</span>]]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> [<span class="st">'Industry'</span>])</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'Average_Stock_Close'</span>], ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>       .reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>df3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Industry</th>
+<th data-quarto-table-cell-role="th">Average_Stock_Close</th>
+<th data-quarto-table-cell-role="th">Average_ESG_Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Residential Construction</td>
+<td>1310.106527</td>
+<td>22.140000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Specialty Retail</td>
+<td>522.518824</td>
+<td>15.733333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Restaurants</td>
+<td>445.256447</td>
+<td>24.528571</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Travel Services</td>
+<td>365.265593</td>
+<td>23.237500</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Semiconductor Equipment &amp; Materials</td>
+<td>345.072318</td>
+<td>15.125000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">118</td>
+<td>Oil &amp; Gas Drilling</td>
+<td>22.277880</td>
+<td>23.900000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">119</td>
+<td>Department Stores</td>
+<td>19.077373</td>
+<td>16.466667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">120</td>
+<td>Broadcasting</td>
+<td>15.874831</td>
+<td>14.700000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">121</td>
+<td>REIT - Mortgage</td>
+<td>13.187839</td>
+<td>13.650000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">122</td>
+<td>REIT - Hotel &amp; Motel</td>
+<td>12.208811</td>
+<td>13.250000</td>
+</tr>
+</tbody>
+</table>
+
+<p>123 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<p>As a follow up to questions 2 and 3 we can also group the DataFrame by sector and industries in order to see if there is a specific relationship between them and average stock close.</p>
+<div id="c05b8304" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> esg_stock_df.groupby([<span class="st">'Sector'</span>, <span class="st">'Industry'</span>])</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df3b <span class="op">=</span> (esg_stock_df</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       .assign(Close_avg <span class="op">=</span> groups[<span class="st">'Close'</span>].transform(<span class="st">'mean'</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>               Average_ESG_Score <span class="op">=</span> groups[<span class="st">'ESG Risk Score'</span>].transform(<span class="st">'mean'</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Sector'</span>, <span class="st">'Industry'</span>, <span class="st">'Close_avg'</span>, <span class="st">'Average_ESG_Score'</span>]]</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> [<span class="st">'Sector'</span>, <span class="st">'Industry'</span>])</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'Close_avg'</span>], ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>df3b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Sector</th>
+<th data-quarto-table-cell-role="th">Industry</th>
+<th data-quarto-table-cell-role="th">Close_avg</th>
+<th data-quarto-table-cell-role="th">Average_ESG_Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">54425</td>
+<td>Consumer Discretionary</td>
+<td>Residential Construction</td>
+<td>1310.106527</td>
+<td>22.1400</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">933</td>
+<td>Consumer Discretionary</td>
+<td>Specialty Retail</td>
+<td>583.066046</td>
+<td>14.1625</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">122223</td>
+<td>Consumer Discretionary</td>
+<td>Financial Data &amp; Stock Exchanges</td>
+<td>520.521770</td>
+<td>16.3000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">152079</td>
+<td>Industrials</td>
+<td>Software - Application</td>
+<td>485.056389</td>
+<td>20.4000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">183179</td>
+<td>Industrials</td>
+<td>Rental &amp; Leasing Services</td>
+<td>467.507887</td>
+<td>16.9000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6842</td>
+<td>Real Estate</td>
+<td>REIT - Mortgage</td>
+<td>13.187839</td>
+<td>13.6500</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">88324</td>
+<td>Real Estate</td>
+<td>REIT - Hotel &amp; Motel</td>
+<td>12.208811</td>
+<td>13.2500</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">154567</td>
+<td>Technology</td>
+<td>Travel Services</td>
+<td>11.738963</td>
+<td>23.8000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">130931</td>
+<td>Industrials</td>
+<td>Household &amp; Personal Products</td>
+<td>9.655384</td>
+<td>13.6000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">35143</td>
+<td>Technology</td>
+<td>Medical Devices</td>
+<td>2.228714</td>
+<td>22.2000</td>
+</tr>
+</tbody>
+</table>
+
+<p>168 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<p>To explore the overall financial health of the top company NVR, Inc., we can use the following DataFrames that contains the companies income statements and balance sheets.</p>
+<div id="696cbe66" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>income_statements <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/yfinance-income-stmt.csv'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>balance_sheets <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/yfinance-balance-sheet.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can now isolate the data for NVR, Inc.&nbsp;using the two DataFrames formed in this code.</p>
+<div id="1a346549" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> (income_statements[income_statements[<span class="st">'symbol'</span>] <span class="op">==</span> <span class="st">"NVR"</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>       .rename(columns <span class="op">=</span> {<span class="st">'Unnamed: 0'</span>: <span class="st">'Line Item'</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2024-03-31 00:00:00'</span> : <span class="st">'2024-03-31'</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-12-31 00:00:00'</span> : <span class="st">'2023-12-31'</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-09-30 00:00:00'</span> : <span class="st">'2023-09-30'</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-06-30 00:00:00'</span> : <span class="st">'2023-06-30'</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-03-31 00:00:00'</span> : <span class="st">'2023-03-31'</span>})</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Line Item'</span>, <span class="st">'2023-03-31'</span>, <span class="st">'2023-06-30'</span>, <span class="st">'2023-09-30'</span>, <span class="st">'2023-12-31'</span>, <span class="st">'2024-03-31'</span>]]</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>df4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Line Item</th>
+<th data-quarto-table-cell-role="th">2023-03-31</th>
+<th data-quarto-table-cell-role="th">2023-06-30</th>
+<th data-quarto-table-cell-role="th">2023-09-30</th>
+<th data-quarto-table-cell-role="th">2023-12-31</th>
+<th data-quarto-table-cell-role="th">2024-03-31</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18532</td>
+<td>Tax Effect Of Unusual Items</td>
+<td>0.000000e+00</td>
+<td>0.000000e+00</td>
+<td>0.000000e+00</td>
+<td>0.000000e+00</td>
+<td>0.000000e+00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18533</td>
+<td>Tax Rate For Calcs</td>
+<td>2.060000e-01</td>
+<td>1.430000e-01</td>
+<td>1.970000e-01</td>
+<td>1.528200e-01</td>
+<td>1.620000e-01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18534</td>
+<td>Normalized EBITDA</td>
+<td>4.452560e+08</td>
+<td>4.821880e+08</td>
+<td>5.504160e+08</td>
+<td>4.951690e+08</td>
+<td>4.818990e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18535</td>
+<td>Net Income From Continuing Operation Net Minor...</td>
+<td>3.443520e+08</td>
+<td>4.040270e+08</td>
+<td>4.331570e+08</td>
+<td>4.100750e+08</td>
+<td>3.942690e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18536</td>
+<td>Reconciled Depreciation</td>
+<td>4.188000e+06</td>
+<td>4.217000e+06</td>
+<td>4.180000e+06</td>
+<td>4.331000e+06</td>
+<td>4.381000e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18537</td>
+<td>Reconciled Cost Of Revenue</td>
+<td>1.607910e+09</td>
+<td>1.728146e+09</td>
+<td>1.902174e+09</td>
+<td>1.812968e+09</td>
+<td>1.726213e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18538</td>
+<td>EBITDA</td>
+<td>4.452560e+08</td>
+<td>4.821880e+08</td>
+<td>5.504160e+08</td>
+<td>4.951690e+08</td>
+<td>4.818990e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18539</td>
+<td>EBIT</td>
+<td>4.410680e+08</td>
+<td>4.779710e+08</td>
+<td>5.462360e+08</td>
+<td>4.908380e+08</td>
+<td>4.775180e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18540</td>
+<td>Net Interest Income</td>
+<td>-7.258000e+06</td>
+<td>-6.795000e+06</td>
+<td>-6.896000e+06</td>
+<td>-6.791000e+06</td>
+<td>-6.826000e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18541</td>
+<td>Interest Expense</td>
+<td>7.258000e+06</td>
+<td>6.795000e+06</td>
+<td>6.896000e+06</td>
+<td>6.791000e+06</td>
+<td>6.826000e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18542</td>
+<td>Normalized Income</td>
+<td>3.443520e+08</td>
+<td>4.040270e+08</td>
+<td>4.331570e+08</td>
+<td>4.100750e+08</td>
+<td>3.942690e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18543</td>
+<td>Net Income From Continuing And Discontinued Op...</td>
+<td>3.443520e+08</td>
+<td>4.040270e+08</td>
+<td>4.331570e+08</td>
+<td>4.100750e+08</td>
+<td>3.942690e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18544</td>
+<td>Total Expenses</td>
+<td>1.741216e+09</td>
+<td>1.865284e+09</td>
+<td>2.029025e+09</td>
+<td>1.947700e+09</td>
+<td>1.861208e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18545</td>
+<td>Total Operating Income As Reported</td>
+<td>4.127510e+08</td>
+<td>4.413390e+08</td>
+<td>5.074340e+08</td>
+<td>4.609310e+08</td>
+<td>4.483270e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18546</td>
+<td>Diluted Average Shares</td>
+<td>3.447000e+06</td>
+<td>3.467000e+06</td>
+<td>3.458000e+06</td>
+<td>3.373000e+06</td>
+<td>3.387000e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18547</td>
+<td>Basic Average Shares</td>
+<td>3.239000e+06</td>
+<td>3.263000e+06</td>
+<td>3.259000e+06</td>
+<td>3.192000e+06</td>
+<td>3.186000e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18548</td>
+<td>Diluted EPS</td>
+<td>9.989000e+01</td>
+<td>1.165400e+02</td>
+<td>1.252600e+02</td>
+<td>1.215600e+02</td>
+<td>1.164100e+02</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18549</td>
+<td>Basic EPS</td>
+<td>1.063100e+02</td>
+<td>1.238400e+02</td>
+<td>1.329200e+02</td>
+<td>1.284600e+02</td>
+<td>1.237600e+02</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18550</td>
+<td>Diluted NI Availto Com Stockholders</td>
+<td>3.443520e+08</td>
+<td>4.040270e+08</td>
+<td>4.331570e+08</td>
+<td>4.100750e+08</td>
+<td>3.942690e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18551</td>
+<td>Net Income Common Stockholders</td>
+<td>3.443520e+08</td>
+<td>4.040270e+08</td>
+<td>4.331570e+08</td>
+<td>4.100750e+08</td>
+<td>3.942690e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18552</td>
+<td>Net Income</td>
+<td>3.443520e+08</td>
+<td>4.040270e+08</td>
+<td>4.331570e+08</td>
+<td>4.100750e+08</td>
+<td>3.942690e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18553</td>
+<td>Net Income Including Noncontrolling Interests</td>
+<td>3.443520e+08</td>
+<td>4.040270e+08</td>
+<td>4.331570e+08</td>
+<td>4.100750e+08</td>
+<td>3.942690e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18554</td>
+<td>Net Income Continuous Operations</td>
+<td>3.443520e+08</td>
+<td>4.040270e+08</td>
+<td>4.331570e+08</td>
+<td>4.100750e+08</td>
+<td>3.942690e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18555</td>
+<td>Tax Provision</td>
+<td>8.945800e+07</td>
+<td>6.714900e+07</td>
+<td>1.061830e+08</td>
+<td>7.397200e+07</td>
+<td>7.642300e+07</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18556</td>
+<td>Pretax Income</td>
+<td>4.338100e+08</td>
+<td>4.711760e+08</td>
+<td>5.393400e+08</td>
+<td>4.840470e+08</td>
+<td>4.706920e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18557</td>
+<td>Other Income Expense</td>
+<td>9.890000e+05</td>
+<td>1.102000e+06</td>
+<td>1.169000e+06</td>
+<td>1.189000e+06</td>
+<td>1.171000e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18558</td>
+<td>Other Non Operating Income Expenses</td>
+<td>9.890000e+05</td>
+<td>1.102000e+06</td>
+<td>1.169000e+06</td>
+<td>1.189000e+06</td>
+<td>1.171000e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18559</td>
+<td>Net Non Operating Interest Income Expense</td>
+<td>-7.258000e+06</td>
+<td>-6.795000e+06</td>
+<td>-6.896000e+06</td>
+<td>-6.791000e+06</td>
+<td>-6.826000e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18560</td>
+<td>Interest Expense Non Operating</td>
+<td>7.258000e+06</td>
+<td>6.795000e+06</td>
+<td>6.896000e+06</td>
+<td>6.791000e+06</td>
+<td>6.826000e+06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18561</td>
+<td>Operating Income</td>
+<td>4.400790e+08</td>
+<td>4.768690e+08</td>
+<td>5.450670e+08</td>
+<td>4.896490e+08</td>
+<td>4.763470e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18562</td>
+<td>Operating Expense</td>
+<td>1.333060e+08</td>
+<td>1.371380e+08</td>
+<td>1.268510e+08</td>
+<td>1.347320e+08</td>
+<td>1.349950e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18563</td>
+<td>Other Operating Expenses</td>
+<td>-3.294600e+07</td>
+<td>-3.425900e+07</td>
+<td>-3.991400e+07</td>
+<td>-4.089100e+07</td>
+<td>-4.086600e+07</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18564</td>
+<td>Selling General And Administration</td>
+<td>1.662520e+08</td>
+<td>1.713970e+08</td>
+<td>1.667650e+08</td>
+<td>1.756230e+08</td>
+<td>1.758610e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18565</td>
+<td>General And Administrative Expense</td>
+<td>1.662520e+08</td>
+<td>1.713970e+08</td>
+<td>1.667650e+08</td>
+<td>1.756230e+08</td>
+<td>1.758610e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18566</td>
+<td>Other Gand A</td>
+<td>1.662520e+08</td>
+<td>1.713970e+08</td>
+<td>1.667650e+08</td>
+<td>1.756230e+08</td>
+<td>1.758610e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18567</td>
+<td>Gross Profit</td>
+<td>5.733850e+08</td>
+<td>6.140070e+08</td>
+<td>6.719180e+08</td>
+<td>6.243810e+08</td>
+<td>6.113420e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18568</td>
+<td>Cost Of Revenue</td>
+<td>1.607910e+09</td>
+<td>1.728146e+09</td>
+<td>1.902174e+09</td>
+<td>1.812968e+09</td>
+<td>1.726213e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">18569</td>
+<td>Total Revenue</td>
+<td>2.181295e+09</td>
+<td>2.342153e+09</td>
+<td>2.574092e+09</td>
+<td>2.437349e+09</td>
+<td>2.337555e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18570</td>
+<td>Operating Revenue</td>
+<td>2.181295e+09</td>
+<td>2.342153e+09</td>
+<td>2.574092e+09</td>
+<td>2.437349e+09</td>
+<td>2.337555e+09</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="8383614d" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df5  <span class="op">=</span> (balance_sheets[balance_sheets[<span class="st">'symbol'</span>] <span class="op">==</span> <span class="st">"NVR"</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>       .rename(columns <span class="op">=</span> {<span class="st">'Unnamed: 0'</span>: <span class="st">'Line Item'</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2024-03-31 00:00:00'</span> : <span class="st">'2024-03-31'</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-12-31 00:00:00'</span> : <span class="st">'2023-12-31'</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-09-30 00:00:00'</span> : <span class="st">'2023-09-30'</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-06-30 00:00:00'</span> : <span class="st">'2023-06-30'</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-03-31 00:00:00'</span> : <span class="st">'2023-03-31'</span>})</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Line Item'</span>, <span class="st">'2023-03-31'</span>, <span class="st">'2023-06-30'</span>, <span class="st">'2023-09-30'</span>, <span class="st">'2023-12-31'</span>, <span class="st">'2024-03-31'</span>]]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>df5.set_index(df5.columns[<span class="dv">0</span>], inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>df5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">2023-03-31</th>
+<th data-quarto-table-cell-role="th">2023-06-30</th>
+<th data-quarto-table-cell-role="th">2023-09-30</th>
+<th data-quarto-table-cell-role="th">2023-12-31</th>
+<th data-quarto-table-cell-role="th">2024-03-31</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Line Item</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Treasury Shares Number</td>
+<td>1.731358e+07</td>
+<td>1.729479e+07</td>
+<td>1.734535e+07</td>
+<td>1.736045e+07</td>
+<td>1.749440e+07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Ordinary Shares Number</td>
+<td>3.241750e+06</td>
+<td>3.260538e+06</td>
+<td>3.209977e+06</td>
+<td>3.194876e+06</td>
+<td>3.167625e+06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Share Issued</td>
+<td>2.055533e+07</td>
+<td>2.055533e+07</td>
+<td>2.055533e+07</td>
+<td>2.055533e+07</td>
+<td>2.066203e+07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Total Debt</td>
+<td>1.013884e+09</td>
+<td>1.016961e+09</td>
+<td>1.017434e+09</td>
+<td>1.014299e+09</td>
+<td>1.008643e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Tangible Book Value</td>
+<td>3.845346e+09</td>
+<td>4.153263e+09</td>
+<td>4.172583e+09</td>
+<td>4.364725e+09</td>
+<td>4.344381e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Invested Capital</td>
+<td>4.759773e+09</td>
+<td>5.067226e+09</td>
+<td>5.086079e+09</td>
+<td>5.277752e+09</td>
+<td>5.256935e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Working Capital</td>
+<td>4.351682e+09</td>
+<td>4.663817e+09</td>
+<td>4.681361e+09</td>
+<td>4.770972e+09</td>
+<td>4.834917e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Net Tangible Assets</td>
+<td>3.845346e+09</td>
+<td>4.153263e+09</td>
+<td>4.172583e+09</td>
+<td>4.364725e+09</td>
+<td>4.344381e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Capital Lease Obligations</td>
+<td>9.945700e+07</td>
+<td>1.029980e+08</td>
+<td>1.039380e+08</td>
+<td>1.012720e+08</td>
+<td>9.608900e+07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Common Stock Equity</td>
+<td>3.845346e+09</td>
+<td>4.153263e+09</td>
+<td>4.172583e+09</td>
+<td>4.364725e+09</td>
+<td>4.344381e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Total Capitalization</td>
+<td>4.759773e+09</td>
+<td>5.067226e+09</td>
+<td>5.086079e+09</td>
+<td>5.277752e+09</td>
+<td>5.256935e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Total Equity Gross Minority Interest</td>
+<td>3.845346e+09</td>
+<td>4.153263e+09</td>
+<td>4.172583e+09</td>
+<td>4.364725e+09</td>
+<td>4.344381e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Stockholders Equity</td>
+<td>3.845346e+09</td>
+<td>4.153263e+09</td>
+<td>4.172583e+09</td>
+<td>4.364725e+09</td>
+<td>4.344381e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Treasury Stock</td>
+<td>1.094927e+10</td>
+<td>1.111642e+10</td>
+<td>1.158360e+10</td>
+<td>1.184903e+10</td>
+<td>1.232083e+10</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Retained Earnings</td>
+<td>1.211777e+10</td>
+<td>1.252179e+10</td>
+<td>1.295495e+10</td>
+<td>1.336502e+10</td>
+<td>1.375929e+10</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Additional Paid In Capital</td>
+<td>2.676641e+09</td>
+<td>2.747687e+09</td>
+<td>2.801027e+09</td>
+<td>2.848528e+09</td>
+<td>2.905707e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Capital Stock</td>
+<td>2.060000e+05</td>
+<td>2.060000e+05</td>
+<td>2.060000e+05</td>
+<td>2.060000e+05</td>
+<td>2.060000e+05</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Common Stock</td>
+<td>2.060000e+05</td>
+<td>2.060000e+05</td>
+<td>2.060000e+05</td>
+<td>2.060000e+05</td>
+<td>2.060000e+05</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Total Liabilities Net Minority Interest</td>
+<td>2.230559e+09</td>
+<td>2.113512e+09</td>
+<td>2.199680e+09</td>
+<td>2.237032e+09</td>
+<td>2.193776e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Total Non Current Liabilities Net Minority Interest</td>
+<td>1.013884e+09</td>
+<td>1.016961e+09</td>
+<td>1.017434e+09</td>
+<td>1.014299e+09</td>
+<td>1.008643e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Non Current Deferred Liabilities</td>
+<td>3.352300e+08</td>
+<td>3.687630e+08</td>
+<td>3.553110e+08</td>
+<td>3.344410e+08</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Non Current Deferred Revenue</td>
+<td>3.352300e+08</td>
+<td>3.687630e+08</td>
+<td>3.553110e+08</td>
+<td>3.344410e+08</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Long Term Debt And Capital Lease Obligation</td>
+<td>1.013884e+09</td>
+<td>1.016961e+09</td>
+<td>1.017434e+09</td>
+<td>1.014299e+09</td>
+<td>1.008643e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Long Term Capital Lease Obligation</td>
+<td>9.945700e+07</td>
+<td>1.029980e+08</td>
+<td>1.039380e+08</td>
+<td>1.012720e+08</td>
+<td>9.608900e+07</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Long Term Debt</td>
+<td>9.144270e+08</td>
+<td>9.139630e+08</td>
+<td>9.134960e+08</td>
+<td>9.130270e+08</td>
+<td>9.125540e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Current Liabilities</td>
+<td>1.216675e+09</td>
+<td>1.096551e+09</td>
+<td>1.182246e+09</td>
+<td>1.222733e+09</td>
+<td>1.185133e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Current Deferred Liabilities</td>
+<td>3.352300e+08</td>
+<td>3.687630e+08</td>
+<td>3.553110e+08</td>
+<td>3.344410e+08</td>
+<td>3.553310e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Current Deferred Revenue</td>
+<td>3.352300e+08</td>
+<td>3.687630e+08</td>
+<td>3.553110e+08</td>
+<td>3.344410e+08</td>
+<td>3.553310e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Payables And Accrued Expenses</td>
+<td>8.814450e+08</td>
+<td>7.277880e+08</td>
+<td>8.269350e+08</td>
+<td>8.882920e+08</td>
+<td>8.298020e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Current Accrued Expenses</td>
+<td>4.593350e+08</td>
+<td>2.915630e+08</td>
+<td>3.862990e+08</td>
+<td>4.130430e+08</td>
+<td>3.808110e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Payables</td>
+<td>4.221100e+08</td>
+<td>4.362250e+08</td>
+<td>4.406360e+08</td>
+<td>4.752490e+08</td>
+<td>4.489910e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Accounts Payable</td>
+<td>4.221100e+08</td>
+<td>4.362250e+08</td>
+<td>4.406360e+08</td>
+<td>4.752490e+08</td>
+<td>4.489910e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Total Assets</td>
+<td>6.075905e+09</td>
+<td>6.266775e+09</td>
+<td>6.372263e+09</td>
+<td>6.601757e+09</td>
+<td>6.538157e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Total Non Current Assets</td>
+<td>5.075480e+08</td>
+<td>5.064070e+08</td>
+<td>5.086560e+08</td>
+<td>6.080520e+08</td>
+<td>5.181070e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Other Non Current Assets</td>
+<td>3.543610e+08</td>
+<td>3.477090e+08</td>
+<td>3.467780e+08</td>
+<td>2.960580e+08</td>
+<td>3.588500e+08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Non Current Deferred Assets</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.480050e+08</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Non Current Deferred Taxes Assets</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.480050e+08</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Investment Properties</td>
+<td>5.653300e+07</td>
+<td>5.771100e+07</td>
+<td>5.874300e+07</td>
+<td>6.371600e+07</td>
+<td>6.309500e+07</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Net PPE</td>
+<td>9.665400e+07</td>
+<td>1.009870e+08</td>
+<td>1.031350e+08</td>
+<td>1.002730e+08</td>
+<td>9.616200e+07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Accumulated Depreciation</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>-1.122400e+07</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Gross PPE</td>
+<td>9.665400e+07</td>
+<td>1.009870e+08</td>
+<td>1.031350e+08</td>
+<td>1.114970e+08</td>
+<td>9.616200e+07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Construction In Progress</td>
+<td>5.016670e+08</td>
+<td>5.167090e+08</td>
+<td>5.301700e+08</td>
+<td>5.765510e+08</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Other Properties</td>
+<td>9.665400e+07</td>
+<td>1.009870e+08</td>
+<td>1.031350e+08</td>
+<td>9.392500e+07</td>
+<td>9.616200e+07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Machinery Furniture Equipment</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.757200e+07</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Current Assets</td>
+<td>5.568357e+09</td>
+<td>5.760368e+09</td>
+<td>5.863607e+09</td>
+<td>5.993705e+09</td>
+<td>6.020050e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Assets Held For Sale Current</td>
+<td>3.192480e+08</td>
+<td>4.387560e+08</td>
+<td>3.257920e+08</td>
+<td>2.225600e+08</td>
+<td>3.325100e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Restricted Cash</td>
+<td>5.783100e+07</td>
+<td>6.547500e+07</td>
+<td>6.107800e+07</td>
+<td>5.255000e+07</td>
+<td>5.563600e+07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Prepaid Assets</td>
+<td>5.016670e+08</td>
+<td>5.167090e+08</td>
+<td>5.301700e+08</td>
+<td>5.765510e+08</td>
+<td>6.094070e+08</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Inventory</td>
+<td>1.865542e+09</td>
+<td>2.020089e+09</td>
+<td>2.003773e+09</td>
+<td>1.950150e+09</td>
+<td>2.117034e+09</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Finished Goods</td>
+<td>1.841575e+09</td>
+<td>1.997675e+09</td>
+<td>1.985977e+09</td>
+<td>1.926247e+09</td>
+<td>2.094999e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Raw Materials</td>
+<td>2.396700e+07</td>
+<td>2.241400e+07</td>
+<td>1.779600e+07</td>
+<td>2.390300e+07</td>
+<td>2.203500e+07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Receivables</td>
+<td>2.330700e+07</td>
+<td>2.675700e+07</td>
+<td>3.387800e+07</td>
+<td>2.900000e+07</td>
+<td>3.630600e+07</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Accounts Receivable</td>
+<td>2.330700e+07</td>
+<td>2.675700e+07</td>
+<td>3.387800e+07</td>
+<td>2.900000e+07</td>
+<td>3.630600e+07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Cash Cash Equivalents And Short Term Investments</td>
+<td>2.800762e+09</td>
+<td>2.692582e+09</td>
+<td>2.908916e+09</td>
+<td>3.162894e+09</td>
+<td>2.869157e+09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Cash And Cash Equivalents</td>
+<td>2.800762e+09</td>
+<td>2.692582e+09</td>
+<td>2.908916e+09</td>
+<td>3.162894e+09</td>
+<td>2.869157e+09</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Below is a heatmap used to show the correlation between the companies different financial measures.</p>
+<div id="2496c4f6" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="op">=</span> df5.T[[<span class="st">'Share Issued'</span>, <span class="st">"Total Debt"</span>, <span class="st">"Stockholders Equity"</span>, <span class="st">'Retained Earnings'</span>, <span class="st">'Current Liabilities'</span>, <span class="st">'Current Assets'</span>]]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df6.corr()</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, linewidths<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Title of the heatmap</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Heatmap with Varied Correlations'</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the heatmap</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="danl-210-Final-Project_files/figure-html/cell-15-output-1.png" width="758" height="643" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally lets explore the ESG ratings of the top performing companies by comparing them to the best overall scores. From df1 we can see that NVR, Inc.&nbsp;has an ESG Risk Score of 20.3 and a Controversy Score of 1. This indicates that the company as a whole is not very controversial which is good for stockholders. It’s ESG Risk Score seems to be relatively good as it is 202.3 on a scale from 0 to 100, with 100 being the most severe and risky of companies. From the DataFrame below, we can see that its risk score is far from the lowest.</p>
+<div id="c5675bf3" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df7 <span class="op">=</span> (esg_stock_df</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'ESG Risk Score'</span>, <span class="st">'Controversy Level'</span>])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">"Company Name"</span>, <span class="st">'Symbol'</span>, <span class="st">'ESG Risk Score'</span>, <span class="st">'Controversy Level'</span>]]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> <span class="st">'Symbol'</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>df7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Company Name</th>
+<th data-quarto-table-cell-role="th">Symbol</th>
+<th data-quarto-table-cell-role="th">ESG Risk Score</th>
+<th data-quarto-table-cell-role="th">Controversy Level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">72463</td>
+<td>Flex Ltd.</td>
+<td>FLEX</td>
+<td>6.4</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">97965</td>
+<td>Jones Lang LaSalle Incorporated</td>
+<td>JLL</td>
+<td>6.8</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">83037</td>
+<td>Hasbro, Inc.</td>
+<td>HAS</td>
+<td>7.1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">192820</td>
+<td>Wheaton Precious Metals Corp.</td>
+<td>WPM</td>
+<td>7.3</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">100453</td>
+<td>Keysight Technologies, Inc.</td>
+<td>KEYS</td>
+<td>7.6</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">184112</td>
+<td>Visa Inc.</td>
+<td>V</td>
+<td>NaN</td>
+<td>3.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">30789</td>
+<td>Citigroup Inc.</td>
+<td>C</td>
+<td>NaN</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">190332</td>
+<td>Wells Fargo &amp; Company</td>
+<td>WFC</td>
+<td>NaN</td>
+<td>5.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">80549</td>
+<td>Global Payments Inc.</td>
+<td>GPN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">145548</td>
+<td>Pioneer Natural Resources Company</td>
+<td>PXD</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>636 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<p>To see how the average value of a companies stock Close, ESG Risk Score, and Controversy Level correlate with each other we have the heatmap below. It may come to some surprise to see that there is not a lot of correlation between them all. However, it does make sense that the highest amount is found between ESG Risk Score and Controversy level.</p>
+<div id="edac8248" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df1[[<span class="st">'Close_avg'</span>, <span class="st">'ESG Risk Score'</span>, <span class="st">'Controversy Level'</span>]].corr()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, linewidths<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Title of the heatmap</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Heatmap with Varied Correlations'</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the heatmap</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="danl-210-Final-Project_files/figure-html/cell-17-output-1.png" width="600" height="505" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Significance of this project: As stated previously, the risk score analysis is important when evaluating the true value of companies as well as when you are considering investing in a company. Although there has been less of a focus for companies to evaluate their external risk in the past, it is becoming more important as the information is free to the public, and a high controversy level may lead to fewer investors. It is buisness best interest to being tracking this information as well as the general public as the things factored into ESG Risk Scores directly impact everyday individuals.</p>
+<p>References:</p>
+<p>Data collected from Yahoo! finance: https://finance.yahoo.com/</p>
+<p>ChatGPT was used as a coding reference to improve code and debug. https://chatgpt.com/</p>
+<p>Information on ESG Risk Scores found on Sustainalytics. https://www.sustainalytics.com/esg-data</p>
+
+
+<!-- -->
+
+
+</main> <!-- /main -->
+<script type="text/javascript" src="links.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb20" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Analysis the Relationship between ESG  and Financial Data"</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Laya Davis</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: true</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">  fig-width: 9</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false       # https://quarto.org/docs/output-formats/html-code.html</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: atom-one # atom-one tango espresso</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>Introduction:</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>Although Financial Data has been reported by major companies for quiet some time, there has been a much shorter period in which major companies have been responsible for reporting on their impacts to the environment and the communities around them. The ESG Risk Scores as well as the Controversy Levels help the public assess companies as a whole, with all of the costs and benefits. Although these numbers might not be based in financials, basic economics tells us that we must access economic activity by both its internal and external costs. The ESG data and rankings help us begin to do just that. In this post I will provide some data analysis on both the financial and ESG data of 635 companies to analysis the true value of these companies.</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>Questions I wish to answer:</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>What companies have the highest and lowest average stock price?</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>What sectors have highest and lowest average stock price?</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>What industries have highest and lowest average stock price?</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>For the highest average stock value companies, what is the overall financial health of the company?</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>How do the successful companies compare in terms of ESG Risk Score and Controversy Level?</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>esg_df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/esg_data.csv'</span>)</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>stock_data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/Stock_data.csv'</span>)</span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>esg_stock_df <span class="op">=</span> pd.merge(esg_df, stock_data, on <span class="op">=</span> <span class="st">'Symbol'</span>, how <span class="op">=</span> <span class="st">"right"</span>)</span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>esg_stock_df.drop([<span class="st">'Unnamed: 0_x'</span>, <span class="st">'Unnamed: 0_y'</span>], axis <span class="op">=</span><span class="dv">1</span>, inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>To learn more about the DataFrame before we begin our analysis, the .info() function can help learn about its columns and their data types:</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a>esg_stock_df.info()</span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a>To obtain some basic descriptive statistics on the data in the DataFrame, we can use .describe():</span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a>esg_stock_df.describe()</span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a>To answer question number 1 we can group the DataFrame by company, calculate the average value for each companies stock close, and sort the DataFrame by its average value for close. In the code below we use the head() and tail() attributes to obtain the companies with the largest average stock close value in df1a and the companies with the smallest average stock close value in df1b.</span>
+<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a>companies <span class="op">=</span> esg_stock_df.groupby(<span class="st">'Company Name'</span>)</span>
+<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-83"><a href="#cb20-83" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> (esg_stock_df</span>
+<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a>       .assign(Close_avg <span class="op">=</span> companies[<span class="st">'Close'</span>].transform(<span class="st">'mean'</span>))</span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> [<span class="st">'Symbol'</span>])</span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'Close_avg'</span>], ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a>df1a <span class="op">=</span> df1.head(<span class="dv">10</span>)</span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a>df1b <span class="op">=</span> df1.tail(<span class="dv">10</span>)</span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a>df1a</span>
+<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-98"><a href="#cb20-98" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a>df1b</span>
+<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a>To answer question 2 we have the following code to form a new DataFrame that is grouped by sector.</span>
+<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a>sectors <span class="op">=</span> esg_stock_df.groupby(<span class="st">'Sector'</span>)</span>
+<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> (esg_stock_df</span>
+<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a>       .assign(Average_Stock_Close <span class="op">=</span> sectors[<span class="st">'Close'</span>].transform(<span class="st">'mean'</span>),</span>
+<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a>               Average_ESG_Score <span class="op">=</span> sectors[<span class="st">'ESG Risk Score'</span>].transform(<span class="st">'mean'</span>))</span>
+<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Sector'</span>, <span class="st">'Average_Stock_Close'</span>, <span class="st">'Average_ESG_Score'</span>]]</span>
+<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> [<span class="st">'Sector'</span>])</span>
+<span id="cb20-116"><a href="#cb20-116" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'Average_Stock_Close'</span>], ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a>       .reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a>df2</span>
+<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a>We can then use a bar chart to see which sectors have the highest and lowest average stock value. In the below bar graph you can see that the sector with highest average stock value is Consumer Discretionary.</span>
+<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-128"><a href="#cb20-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a>sns.barplot(data <span class="op">=</span> df2,</span>
+<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span><span class="st">'Sector'</span>,</span>
+<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> <span class="st">'Average_Stock_Close'</span>)</span>
+<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation <span class="op">=</span> <span class="dv">80</span>)</span>
+<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-135"><a href="#cb20-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a>We can also see how these sectors compare in terms of the average ESG Risk Score for the companies in that sector. You can see in the bar graph below that the sector Consumer Discretionary has a relatively average value for their average ESG Risk score.</span>
+<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a>sns.barplot(data <span class="op">=</span> df2,</span>
+<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span><span class="st">'Sector'</span>,</span>
+<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> <span class="st">'Average_ESG_Score'</span>)</span>
+<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation <span class="op">=</span> <span class="dv">80</span>)</span>
+<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-147"><a href="#cb20-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-148"><a href="#cb20-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-149"><a href="#cb20-149" aria-hidden="true" tabindex="-1"></a>To answer question 3 we can form a new DataFrame that is grouped by industries.</span>
+<span id="cb20-150"><a href="#cb20-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-153"><a href="#cb20-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a>industries <span class="op">=</span> esg_stock_df.groupby(<span class="st">'Industry'</span>)</span>
+<span id="cb20-155"><a href="#cb20-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-156"><a href="#cb20-156" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> (esg_stock_df</span>
+<span id="cb20-157"><a href="#cb20-157" aria-hidden="true" tabindex="-1"></a>       .assign(Average_Stock_Close <span class="op">=</span> industries[<span class="st">'Close'</span>].transform(<span class="st">'mean'</span>),</span>
+<span id="cb20-158"><a href="#cb20-158" aria-hidden="true" tabindex="-1"></a>               Average_ESG_Score <span class="op">=</span> industries[<span class="st">'ESG Risk Score'</span>].transform(<span class="st">'mean'</span>))</span>
+<span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Industry'</span>, <span class="st">'Average_Stock_Close'</span>, <span class="st">'Average_ESG_Score'</span>]]</span>
+<span id="cb20-160"><a href="#cb20-160" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> [<span class="st">'Industry'</span>])</span>
+<span id="cb20-161"><a href="#cb20-161" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'Average_Stock_Close'</span>], ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb20-162"><a href="#cb20-162" aria-hidden="true" tabindex="-1"></a>       .reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb20-163"><a href="#cb20-163" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a>df3</span>
+<span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-168"><a href="#cb20-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-169"><a href="#cb20-169" aria-hidden="true" tabindex="-1"></a>As a follow up to questions 2 and 3 we can also group the DataFrame by sector and industries in order to see if there is a specific relationship between them and average stock close.</span>
+<span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> esg_stock_df.groupby([<span class="st">'Sector'</span>, <span class="st">'Industry'</span>])</span>
+<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-176"><a href="#cb20-176" aria-hidden="true" tabindex="-1"></a>df3b <span class="op">=</span> (esg_stock_df</span>
+<span id="cb20-177"><a href="#cb20-177" aria-hidden="true" tabindex="-1"></a>       .assign(Close_avg <span class="op">=</span> groups[<span class="st">'Close'</span>].transform(<span class="st">'mean'</span>),</span>
+<span id="cb20-178"><a href="#cb20-178" aria-hidden="true" tabindex="-1"></a>               Average_ESG_Score <span class="op">=</span> groups[<span class="st">'ESG Risk Score'</span>].transform(<span class="st">'mean'</span>))</span>
+<span id="cb20-179"><a href="#cb20-179" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Sector'</span>, <span class="st">'Industry'</span>, <span class="st">'Close_avg'</span>, <span class="st">'Average_ESG_Score'</span>]]</span>
+<span id="cb20-180"><a href="#cb20-180" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> [<span class="st">'Sector'</span>, <span class="st">'Industry'</span>])</span>
+<span id="cb20-181"><a href="#cb20-181" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'Close_avg'</span>], ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb20-182"><a href="#cb20-182" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb20-183"><a href="#cb20-183" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb20-184"><a href="#cb20-184" aria-hidden="true" tabindex="-1"></a>df3b</span>
+<span id="cb20-185"><a href="#cb20-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-186"><a href="#cb20-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-187"><a href="#cb20-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-188"><a href="#cb20-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-189"><a href="#cb20-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-190"><a href="#cb20-190" aria-hidden="true" tabindex="-1"></a>To explore the overall financial health of the top company NVR, Inc., we can use the following DataFrames that contains the companies income statements and balance sheets.</span>
+<span id="cb20-191"><a href="#cb20-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-194"><a href="#cb20-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-195"><a href="#cb20-195" aria-hidden="true" tabindex="-1"></a>income_statements <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/yfinance-income-stmt.csv'</span>)</span>
+<span id="cb20-196"><a href="#cb20-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-197"><a href="#cb20-197" aria-hidden="true" tabindex="-1"></a>balance_sheets <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/yfinance-balance-sheet.csv'</span>)</span>
+<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-200"><a href="#cb20-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a>We can now isolate the data for NVR, Inc. using the two DataFrames formed in this code.</span>
+<span id="cb20-202"><a href="#cb20-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-205"><a href="#cb20-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-206"><a href="#cb20-206" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> (income_statements[income_statements[<span class="st">'symbol'</span>] <span class="op">==</span> <span class="st">"NVR"</span>]</span>
+<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a>       .rename(columns <span class="op">=</span> {<span class="st">'Unnamed: 0'</span>: <span class="st">'Line Item'</span>,</span>
+<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2024-03-31 00:00:00'</span> : <span class="st">'2024-03-31'</span>,</span>
+<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-12-31 00:00:00'</span> : <span class="st">'2023-12-31'</span>,</span>
+<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-09-30 00:00:00'</span> : <span class="st">'2023-09-30'</span>,</span>
+<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-06-30 00:00:00'</span> : <span class="st">'2023-06-30'</span>,</span>
+<span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-03-31 00:00:00'</span> : <span class="st">'2023-03-31'</span>})</span>
+<span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Line Item'</span>, <span class="st">'2023-03-31'</span>, <span class="st">'2023-06-30'</span>, <span class="st">'2023-09-30'</span>, <span class="st">'2023-12-31'</span>, <span class="st">'2024-03-31'</span>]]</span>
+<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb20-215"><a href="#cb20-215" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a>df4</span>
+<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-219"><a href="#cb20-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-220"><a href="#cb20-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-223"><a href="#cb20-223" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-224"><a href="#cb20-224" aria-hidden="true" tabindex="-1"></a>df5  <span class="op">=</span> (balance_sheets[balance_sheets[<span class="st">'symbol'</span>] <span class="op">==</span> <span class="st">"NVR"</span>]</span>
+<span id="cb20-225"><a href="#cb20-225" aria-hidden="true" tabindex="-1"></a>       .rename(columns <span class="op">=</span> {<span class="st">'Unnamed: 0'</span>: <span class="st">'Line Item'</span>,</span>
+<span id="cb20-226"><a href="#cb20-226" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2024-03-31 00:00:00'</span> : <span class="st">'2024-03-31'</span>,</span>
+<span id="cb20-227"><a href="#cb20-227" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-12-31 00:00:00'</span> : <span class="st">'2023-12-31'</span>,</span>
+<span id="cb20-228"><a href="#cb20-228" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-09-30 00:00:00'</span> : <span class="st">'2023-09-30'</span>,</span>
+<span id="cb20-229"><a href="#cb20-229" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-06-30 00:00:00'</span> : <span class="st">'2023-06-30'</span>,</span>
+<span id="cb20-230"><a href="#cb20-230" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'2023-03-31 00:00:00'</span> : <span class="st">'2023-03-31'</span>})</span>
+<span id="cb20-231"><a href="#cb20-231" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">'Line Item'</span>, <span class="st">'2023-03-31'</span>, <span class="st">'2023-06-30'</span>, <span class="st">'2023-09-30'</span>, <span class="st">'2023-12-31'</span>, <span class="st">'2024-03-31'</span>]]</span>
+<span id="cb20-232"><a href="#cb20-232" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb20-233"><a href="#cb20-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-234"><a href="#cb20-234" aria-hidden="true" tabindex="-1"></a>df5.set_index(df5.columns[<span class="dv">0</span>], inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb20-235"><a href="#cb20-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-236"><a href="#cb20-236" aria-hidden="true" tabindex="-1"></a>df5</span>
+<span id="cb20-237"><a href="#cb20-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-238"><a href="#cb20-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-239"><a href="#cb20-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-240"><a href="#cb20-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-241"><a href="#cb20-241" aria-hidden="true" tabindex="-1"></a>Below is a heatmap used to show the correlation between the companies different financial measures.</span>
+<span id="cb20-242"><a href="#cb20-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-245"><a href="#cb20-245" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-246"><a href="#cb20-246" aria-hidden="true" tabindex="-1"></a>df6 <span class="op">=</span> df5.T[[<span class="st">'Share Issued'</span>, <span class="st">"Total Debt"</span>, <span class="st">"Stockholders Equity"</span>, <span class="st">'Retained Earnings'</span>, <span class="st">'Current Liabilities'</span>, <span class="st">'Current Assets'</span>]]</span>
+<span id="cb20-247"><a href="#cb20-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-248"><a href="#cb20-248" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df6.corr()</span>
+<span id="cb20-249"><a href="#cb20-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-250"><a href="#cb20-250" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb20-251"><a href="#cb20-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-252"><a href="#cb20-252" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, linewidths<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb20-253"><a href="#cb20-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-254"><a href="#cb20-254" aria-hidden="true" tabindex="-1"></a><span class="co"># Title of the heatmap</span></span>
+<span id="cb20-255"><a href="#cb20-255" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Heatmap with Varied Correlations'</span>)</span>
+<span id="cb20-256"><a href="#cb20-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-257"><a href="#cb20-257" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the heatmap</span></span>
+<span id="cb20-258"><a href="#cb20-258" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb20-259"><a href="#cb20-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-260"><a href="#cb20-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-261"><a href="#cb20-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-262"><a href="#cb20-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-263"><a href="#cb20-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-264"><a href="#cb20-264" aria-hidden="true" tabindex="-1"></a>Finally lets explore the ESG ratings of the top performing companies by comparing them to the best overall scores. From df1 we can see that NVR, Inc. has an ESG Risk Score of 20.3 and a Controversy Score of 1. This indicates that the company as a whole is not very controversial which is good for stockholders. It's ESG Risk Score seems to be relatively good as it is 202.3 on a scale from 0 to 100, with 100 being the most severe and risky of companies. From the DataFrame below, we can see that its risk score is far from the lowest.</span>
+<span id="cb20-265"><a href="#cb20-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-268"><a href="#cb20-268" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-269"><a href="#cb20-269" aria-hidden="true" tabindex="-1"></a>df7 <span class="op">=</span> (esg_stock_df</span>
+<span id="cb20-270"><a href="#cb20-270" aria-hidden="true" tabindex="-1"></a>       .sort_values([<span class="st">'ESG Risk Score'</span>, <span class="st">'Controversy Level'</span>])</span>
+<span id="cb20-271"><a href="#cb20-271" aria-hidden="true" tabindex="-1"></a>       [[<span class="st">"Company Name"</span>, <span class="st">'Symbol'</span>, <span class="st">'ESG Risk Score'</span>, <span class="st">'Controversy Level'</span>]]</span>
+<span id="cb20-272"><a href="#cb20-272" aria-hidden="true" tabindex="-1"></a>       .drop_duplicates(subset <span class="op">=</span> <span class="st">'Symbol'</span>)</span>
+<span id="cb20-273"><a href="#cb20-273" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb20-274"><a href="#cb20-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-275"><a href="#cb20-275" aria-hidden="true" tabindex="-1"></a>df7</span>
+<span id="cb20-276"><a href="#cb20-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-277"><a href="#cb20-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-278"><a href="#cb20-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-279"><a href="#cb20-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-280"><a href="#cb20-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-281"><a href="#cb20-281" aria-hidden="true" tabindex="-1"></a>To see how the average value of a companies stock Close, ESG Risk Score, and Controversy Level correlate with each other we have the heatmap below. It may come to some surprise to see that there is not a lot of correlation between them all. However, it does make sense that the highest amount is found between ESG Risk Score and Controversy level. </span>
+<span id="cb20-282"><a href="#cb20-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-285"><a href="#cb20-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-286"><a href="#cb20-286" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df1[[<span class="st">'Close_avg'</span>, <span class="st">'ESG Risk Score'</span>, <span class="st">'Controversy Level'</span>]].corr()</span>
+<span id="cb20-287"><a href="#cb20-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-288"><a href="#cb20-288" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb20-289"><a href="#cb20-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-290"><a href="#cb20-290" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, linewidths<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb20-291"><a href="#cb20-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-292"><a href="#cb20-292" aria-hidden="true" tabindex="-1"></a><span class="co"># Title of the heatmap</span></span>
+<span id="cb20-293"><a href="#cb20-293" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Heatmap with Varied Correlations'</span>)</span>
+<span id="cb20-294"><a href="#cb20-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-295"><a href="#cb20-295" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the heatmap</span></span>
+<span id="cb20-296"><a href="#cb20-296" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb20-297"><a href="#cb20-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-298"><a href="#cb20-298" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-299"><a href="#cb20-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-300"><a href="#cb20-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-301"><a href="#cb20-301" aria-hidden="true" tabindex="-1"></a>Significance of this project:</span>
+<span id="cb20-302"><a href="#cb20-302" aria-hidden="true" tabindex="-1"></a>As stated previously, the risk score analysis is important when evaluating the true value of companies as well as when you are considering investing in a company. Although there has been less of a focus for companies to evaluate their external risk in the past, it is becoming more important as the information is free to the public, and a high controversy level may lead to fewer investors. It is buisness best interest to being tracking this information as well as the general public as the things factored into ESG Risk Scores directly impact everyday individuals. </span>
+<span id="cb20-303"><a href="#cb20-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-304"><a href="#cb20-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-305"><a href="#cb20-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-306"><a href="#cb20-306" aria-hidden="true" tabindex="-1"></a>References:</span>
+<span id="cb20-307"><a href="#cb20-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-308"><a href="#cb20-308" aria-hidden="true" tabindex="-1"></a>Data collected from Yahoo! finance: https://finance.yahoo.com/</span>
+<span id="cb20-309"><a href="#cb20-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-310"><a href="#cb20-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-311"><a href="#cb20-311" aria-hidden="true" tabindex="-1"></a>ChatGPT was used as a coding reference to improve code and debug. https://chatgpt.com/</span>
+<span id="cb20-312"><a href="#cb20-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-313"><a href="#cb20-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-314"><a href="#cb20-314" aria-hidden="true" tabindex="-1"></a>Information on ESG Risk Scores found on Sustainalytics. https://www.sustainalytics.com/esg-data</span>
+<span id="cb20-315"><a href="#cb20-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-316"><a href="#cb20-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-317"><a href="#cb20-317" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Powered with GitHub and Quarto<br>© Laya Davis, 2023</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

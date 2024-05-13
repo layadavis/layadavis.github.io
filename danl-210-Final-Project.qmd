@@ -1,6 +1,5 @@
 ---
 title: "Analysis the Relationship between ESG  and Financial Data"
-subtitle: Quarto Template<br><br> 
 author: 
   - name: Laya Davis
 
@@ -60,3 +59,234 @@ To learn more about the DataFrame before we begin our analysis, the .info() func
 ```{python}
 esg_stock_df.info()
 ```
+
+
+To obtain some basic descriptive statistics on the data in the DataFrame, we can use .describe():
+
+```{python}
+esg_stock_df.describe()
+```
+
+To answer question number 1 we can group the DataFrame by company, calculate the average value for each companies stock close, and sort the DataFrame by its average value for close. In the code below we use the head() and tail() attributes to obtain the companies with the largest average stock close value in df1a and the companies with the smallest average stock close value in df1b.
+
+```{python}
+companies = esg_stock_df.groupby('Company Name')
+
+df1 = (esg_stock_df
+       .assign(Close_avg = companies['Close'].transform('mean'))
+       .drop_duplicates(subset = ['Symbol'])
+       .sort_values(['Close_avg'], ascending = False)
+       )
+
+df1a = df1.head(10)
+df1b = df1.tail(10)
+
+df1a
+
+```
+
+```{python}
+df1b
+```
+
+
+
+To answer question 2 we have the following code to form a new DataFrame that is grouped by sector.
+
+```{python}
+
+sectors = esg_stock_df.groupby('Sector')
+
+df2 = (esg_stock_df
+       .assign(Average_Stock_Close = sectors['Close'].transform('mean'),
+               Average_ESG_Score = sectors['ESG Risk Score'].transform('mean'))
+       [['Sector', 'Average_Stock_Close', 'Average_ESG_Score']]
+       .drop_duplicates(subset = ['Sector'])
+       .sort_values(['Average_Stock_Close'], ascending = False)
+       .reset_index(drop = True)
+       )
+       
+df2
+```
+
+
+We can then use a bar chart to see which sectors have the highest and lowest average stock value. In the below bar graph you can see that the sector with highest average stock value is Consumer Discretionary.
+
+```{python}
+
+sns.barplot(data = df2,
+            x ='Sector',
+            y = 'Average_Stock_Close')
+plt.xticks(rotation = 80)
+
+```
+
+We can also see how these sectors compare in terms of the average ESG Risk Score for the companies in that sector. You can see in the bar graph below that the sector Consumer Discretionary has a relatively average value for their average ESG Risk score.
+
+```{python}
+
+sns.barplot(data = df2,
+            x ='Sector',
+            y = 'Average_ESG_Score')
+plt.xticks(rotation = 80)
+
+```
+
+
+To answer question 3 we can form a new DataFrame that is grouped by industries.
+
+```{python}
+industries = esg_stock_df.groupby('Industry')
+
+df3 = (esg_stock_df
+       .assign(Average_Stock_Close = industries['Close'].transform('mean'),
+               Average_ESG_Score = industries['ESG Risk Score'].transform('mean'))
+       [['Industry', 'Average_Stock_Close', 'Average_ESG_Score']]
+       .drop_duplicates(subset = ['Industry'])
+       .sort_values(['Average_Stock_Close'], ascending = False)
+       .reset_index(drop = True)
+       )
+
+df3
+```
+
+
+As a follow up to questions 2 and 3 we can also group the DataFrame by sector and industries in order to see if there is a specific relationship between them and average stock close.
+
+```{python}
+groups = esg_stock_df.groupby(['Sector', 'Industry'])
+
+df3b = (esg_stock_df
+       .assign(Close_avg = groups['Close'].transform('mean'),
+               Average_ESG_Score = groups['ESG Risk Score'].transform('mean'))
+       [['Sector', 'Industry', 'Close_avg', 'Average_ESG_Score']]
+       .drop_duplicates(subset = ['Sector', 'Industry'])
+       .sort_values(['Close_avg'], ascending = False)
+       )
+       
+df3b
+
+```
+
+
+
+To explore the overall financial health of the top company NVR, Inc., we can use the following DataFrames that contains the companies income statements and balance sheets.
+
+```{python}
+
+income_statements = pd.read_csv('https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/yfinance-income-stmt.csv')
+
+balance_sheets = pd.read_csv('https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/yfinance-balance-sheet.csv')
+
+```
+
+We can now isolate the data for NVR, Inc. using the two DataFrames formed in this code.
+
+```{python}
+
+df4 = (income_statements[income_statements['symbol'] == "NVR"]
+       .rename(columns = {'Unnamed: 0': 'Line Item',
+                          '2024-03-31 00:00:00' : '2024-03-31',
+                          '2023-12-31 00:00:00' : '2023-12-31',
+                          '2023-09-30 00:00:00' : '2023-09-30',
+                          '2023-06-30 00:00:00' : '2023-06-30',
+                          '2023-03-31 00:00:00' : '2023-03-31'})
+       [['Line Item', '2023-03-31', '2023-06-30', '2023-09-30', '2023-12-31', '2024-03-31']]
+       
+       )
+       
+df4
+```
+
+
+```{python}
+df5  = (balance_sheets[balance_sheets['symbol'] == "NVR"]
+       .rename(columns = {'Unnamed: 0': 'Line Item',
+                          '2024-03-31 00:00:00' : '2024-03-31',
+                          '2023-12-31 00:00:00' : '2023-12-31',
+                          '2023-09-30 00:00:00' : '2023-09-30',
+                          '2023-06-30 00:00:00' : '2023-06-30',
+                          '2023-03-31 00:00:00' : '2023-03-31'})
+       [['Line Item', '2023-03-31', '2023-06-30', '2023-09-30', '2023-12-31', '2024-03-31']]
+       )
+
+df5.set_index(df5.columns[0], inplace = True)
+
+df5
+
+```
+
+
+Below is a heatmap used to show the correlation between the companies different financial measures.
+
+```{python}
+df6 = df5.T[['Share Issued', "Total Debt", "Stockholders Equity", 'Retained Earnings', 'Current Liabilities', 'Current Assets']]
+
+corr = df6.corr()
+
+plt.figure(figsize=(8, 6))
+
+sns.heatmap(corr, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)
+
+# Title of the heatmap
+plt.title('Correlation Heatmap with Varied Correlations')
+
+# Display the heatmap
+plt.show()
+
+```
+
+
+
+Finally lets explore the ESG ratings of the top performing companies by comparing them to the best overall scores. From df1 we can see that NVR, Inc. has an ESG Risk Score of 20.3 and a Controversy Score of 1. This indicates that the company as a whole is not very controversial which is good for stockholders. It's ESG Risk Score seems to be relatively good as it is 202.3 on a scale from 0 to 100, with 100 being the most severe and risky of companies. From the DataFrame below, we can see that its risk score is far from the lowest.
+
+```{python}
+
+df7 = (esg_stock_df
+       .sort_values(['ESG Risk Score', 'Controversy Level'])
+       [["Company Name", 'Symbol', 'ESG Risk Score', 'Controversy Level']]
+       .drop_duplicates(subset = 'Symbol')
+       )
+
+df7
+
+```
+
+
+
+To see how the average value of a companies stock Close, ESG Risk Score, and Controversy Level correlate with each other we have the heatmap below. It may come to some surprise to see that there is not a lot of correlation between them all. However, it does make sense that the highest amount is found between ESG Risk Score and Controversy level. 
+
+```{python}
+corr = df1[['Close_avg', 'ESG Risk Score', 'Controversy Level']].corr()
+
+plt.figure(figsize=(8, 6))
+
+sns.heatmap(corr, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)
+
+# Title of the heatmap
+plt.title('Correlation Heatmap with Varied Correlations')
+
+# Display the heatmap
+plt.show()
+
+```
+
+
+Significance of this project:
+As stated previously, the risk score analysis is important when evaluating the true value of companies as well as when you are considering investing in a company. Although there has been less of a focus for companies to evaluate their external risk in the past, it is becoming more important as the information is free to the public, and a high controversy level may lead to fewer investors. It is buisness best interest to being tracking this information as well as the general public as the things factored into ESG Risk Scores directly impact everyday individuals. 
+
+
+
+References:
+
+Data collected from Yahoo! finance: https://finance.yahoo.com/
+
+
+ChatGPT was used as a coding reference to improve code and debug. https://chatgpt.com/
+
+
+Information on ESG Risk Scores found on Sustainalytics. https://www.sustainalytics.com/esg-data
+
+
+
+
