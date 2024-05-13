@@ -9,7 +9,7 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: www.linkedin.com/in/laya-davis
+      href: https://www.linkedin.com/in/laya-davis/
     - icon: github
       text: GitHub
       href: https://github.com/layadavis/layadavis.github.io
