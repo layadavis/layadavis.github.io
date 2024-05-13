@@ -7,8 +7,8 @@ website:
   navbar:
     pinned: true
     left:
-      - text: Analysis the Relationship between ESG  and Financial Data
-        href: Final Project.qmd
+      - text: Final Project
+        href: danl-210-Final-Project.qmd
       - text: Blog
         href: blog-listing.qmd
       - text: Python Basics

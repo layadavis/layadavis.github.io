@@ -1,0 +1,62 @@
+---
+title: "Analysis the Relationship between ESG  and Financial Data"
+subtitle: Quarto Template<br><br> 
+author: 
+  - name: Laya Davis
+
+    
+date: last-modified
+
+execute:
+  echo: true
+  eval: true
+  message: false
+  warning: false
+  fig-width: 9
+
+format: 
+  html:
+    toc: true
+    number-sections: true
+    code-fold: false       # https://quarto.org/docs/output-formats/html-code.html
+    code-tools: true
+    code-link: true
+    highlight-style: atom-one # atom-one tango espresso
+---
+Introduction:
+Although Financial Data has been reported by major companies for quiet some time, there has been a much shorter period in which major companies have been responsible for reporting on their impacts to the environment and the communities around them. The ESG Risk Scores as well as the Controversy Levels help the public assess companies as a whole, with all of the costs and benefits. Although these numbers might not be based in financials, basic economics tells us that we must access economic activity by both its internal and external costs. The ESG data and rankings help us begin to do just that. In this post I will provide some data analysis on both the financial and ESG data of 635 companies to analysis the true value of these companies.
+
+
+
+Questions I wish to answer:
+
+1. What companies have the highest and lowest average stock price?
+
+2. What sectors have highest and lowest average stock price?
+
+3. What industries have highest and lowest average stock price?
+
+4. For the highest average stock value companies, what is the overall financial health of the company?
+
+5. How do the successful companies compare in terms of ESG Risk Score and Controversy Level?
+
+
+```{python}
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+esg_df = pd.read_csv('https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/esg_data.csv')
+stock_data = pd.read_csv('https://raw.githubusercontent.com/layadavis/layadavis.github.io/main/Stock_data.csv')
+
+esg_stock_df = pd.merge(esg_df, stock_data, on = 'Symbol', how = "right")
+esg_stock_df.drop(['Unnamed: 0_x', 'Unnamed: 0_y'], axis =1, inplace = True)
+```
+
+
+
+To learn more about the DataFrame before we begin our analysis, the .info() function can help learn about its columns and their data types:
+
+```{python}
+esg_stock_df.info()
+```
